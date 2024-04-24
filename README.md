@@ -13,3 +13,15 @@ Format tersebut adalah koneksi URL untuk melakukan koneksi dengan AMQP broker. G
   <img src="images\simulation-slow-subscriber.png" />
 </p>
 Dapat dilihat bahwa terdapat 20 pesan pada message queue, karena terdapat buffer sehingga terdapat jeda 1 detik untuk proses pengiriman pesan. Hal ini terjadi ketika saya melakukan `cargo run` pada publisher sebanyak 5 kali.
+
+### Running three subscribers
+<p align="center">
+  <img src="images\running-three-subscribers.png" />
+</p>
+<p align="center">
+  <img src="images\monitor-three-subscribers.png" />
+</p>
+Dapat dilihat bahwa lonjakan grafik menurun lebih cepat, hal tersebut terjadi karena pemrosesan event dibagi kepada 3 subscriber.
+
+### Improvisasi kode
+Menurut saya, dari kode Publisher dapat ditingkatkan dengan mengimplementasikan sistem pengiriman pesan secara asinkronus agar memungkinkan terjadinya pengiriman message secara concurrent. Selain itu, Subscriber juga dapat ditingkatkan kinerjanya dengan menerapkan multithreading agar pemrosesan message dapat terjadi secara bersamaan.
